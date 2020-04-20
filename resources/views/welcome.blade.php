@@ -4,97 +4,150 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Beauty Pro') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <header>
+            <div class="top-nav container">
+                <div class="logo">Beauty Pro
+                    <ul>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
+            <div class="hero container">
+                <div class="hero copy">
+                    <h1>Beauty Pro</h1>
+                    <p>Set the standards for others, treat yourself with Beauty Pro!</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="button button-white">button 1</a>
+                        <a href="#" class="button button-white">button 2</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/banner2.png" alt="banner">
+                </div> <!-- End hero-->
+            </div>
+        </header>
+        <div class="featured-section">
+            <div class="container">
+                <h1 class="text-center">Beauty Pro offers a variety of products...</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eius et sit vero. Ab alias, aliquid consequatur ea fugiat harum ipsam iusto maxime perferendis placeat provident quo ullam ut, voluptatum.
+                </p>
+                <div class="text-center button-container">
+                    <a href="#">Featured</a>
+                    <a href="#">On Sale</a>
+                </div>
+
+                <div class="products text-center">
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                    <div class="product">
+                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
+                        <a href="#"><div class="product-name">Perfume</div></a>
+                        <div class="product-price">£441.4</div>
+                    </div>
+                </div><!-- end products-->
+                <div class="text-center button-container">
+                    <a href="#" class="button">View more products</a>
+                </div>
+            </div><!-- end container -->
+        </div><!-- end feature section -->
+        <div class="blog-section">
+            <div class="container">
+                <h1 class="text-center">Forum Blog</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut commodi dolorum eius expedita illo impedit ipsa maiores nam nisi nobis porro quae quis tempora, vero. Aperiam atque eius quis!</p>
+
+                <div class="blog-posts">
+                    <div class="blog-post">
+                        <a href="#"><img src="img/blog1.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title</h2>
+                        </a>
+                        <div class="blog-description">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <a href="#"><img src="img/blog2.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title</h2>
+                        </a>
+                        <div class="blog-description">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <a href="#"><img src="img/blog3.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title</h2>
+                        </a>
+                        <div class="blog-description">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                        </div>
+                    </div>
+                </div> <!-- end blog posts -->
+            </div><!-- end container -->
+        </div> <!-- end blog-section -->
+        <footer>
+            <div class="footer-content container">
+                <div class="made-with">
+                    Coded with <i class="fa fa-heart"> </i> by Florin
+                </div>
+                <ul>
+                    <li>Contact us</li>
+                    <li><a href="#" class="fa fa-globe"></a></li>
+                    <li><a href="#" class="fa fa-youtube"></a></li>
+                    <li><a href="#" class="fa fa-facebook"></a></li>
+                </ul>
+            </div><!-- end footer-section -->
+        </footer>
     </body>
 </html>
