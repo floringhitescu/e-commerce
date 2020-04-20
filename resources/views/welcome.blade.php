@@ -18,39 +18,40 @@
     </head>
     <body>
         <header>
-            <div class="top-nav container">
-                <div class="logo">Beauty Pro
-                    <ul>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Cart</a></li>
-                    </ul>
+        <div class="top-nav container">
+            <div class="logo">CSS Grid Example</div>
+            <ul>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Cart</a></li>
+            </ul>
+        </div> <!-- end top-nav -->
+
+        <div class="hero container">
+            <div class="hero-copy">
+                <h1>CSS Grid Example</h1>
+                <p>A practical example of using CSS Grid for a typical website layout.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="button button-white">Button 1</a>
+                    <a href="#" class="button button-white">Button 2</a>
                 </div>
+            </div> <!-- end hero-copy -->
+
+            <div class="hero-image">
+                <img src="img/macbook-pro-laravel.png" alt="hero image">
             </div>
-            <div class="hero container">
-                <div class="hero copy">
-                    <h1>Beauty Pro</h1>
-                    <p>Set the standards for others, treat yourself with Beauty Pro!</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="button button-white">button 1</a>
-                        <a href="#" class="button button-white">button 2</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="img/banner2.png" alt="banner">
-                </div> <!-- End hero-->
-            </div>
-        </header>
+        </div> <!-- end hero -->
+    </header>
         <div class="featured-section">
             <div class="container">
                 <h1 class="text-center">Beauty Pro offers a variety of products...</h1>
-                <p>
+                <p class="featured-description">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eius et sit vero. Ab alias, aliquid consequatur ea fugiat harum ipsam iusto maxime perferendis placeat provident quo ullam ut, voluptatum.
                 </p>
                 <div class="text-center button-container">
-                    <a href="#">Featured</a>
-                    <a href="#">On Sale</a>
+                    <a href="#" class="button">Featured</a>
+                    <a href="#" class="button">On Sale</a>
                 </div>
 
                 <div class="products text-center">
@@ -136,18 +137,17 @@
                 </div> <!-- end blog posts -->
             </div><!-- end container -->
         </div> <!-- end blog-section -->
+
         <footer>
             <div class="footer-content container">
-                <div class="made-with">
-                    Coded with <i class="fa fa-heart"> </i> by Florin
-                </div>
+                <div class="made-with">Made with <i class="fa fa-heart"></i> by Andre Madarang</div>
                 <ul>
-                    <li>Contact us</li>
-                    <li><a href="#" class="fa fa-globe"></a></li>
-                    <li><a href="#" class="fa fa-youtube"></a></li>
-                    <li><a href="#" class="fa fa-facebook"></a></li>
+                    <li>Follow Me:</li>
+                    <li><a href="#"><i class="fa fa-globe"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 </ul>
-            </div><!-- end footer-section -->
+            </div> <!-- end footer-content -->
         </footer>
     </body>
 </html>
