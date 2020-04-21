@@ -1,10 +1,11 @@
 
 @extends('layouts.app')
+@section('title', 'Beauty Pro Shop')
 @section('content')
     <header class="mt-n5">
-        <div class="hero container mt-5">
-            <div class="hero-copy">
-                <h1>CSS Grid Example</h1>
+        <div class="hero container mt-5 pt-2">
+            <div class="hero-copy pt-5">
+                <h1>Beauty Pro</h1>
                 <p>A practical example of using CSS Grid for a typical website layout.</p>
                 <div class="hero-buttons">
                     <a href="#" class="button button-white">Button 1</a>
@@ -13,7 +14,7 @@
             </div> <!-- end hero-copy -->
 
             <div class="hero-image">
-                <img src="img/macbook-pro-laravel.png" alt="hero image">
+                <img src="img/banner3.png" alt="hero image">
             </div>
         </div> <!-- end hero -->
     </header>
@@ -27,12 +28,11 @@
                 <a href="#" class="button">Featured</a>
                 <a href="#" class="button">On Sale</a>
             </div>
-
             <div class="products text-center">
                 @foreach($products as $product)
                     <div class="product">
-                        <a href="#"><img src="img/pngwave.png" alt="perfume"></a>
-                        <a href="#"><div class="product-name">{{ $product->name }}</div></a>
+                        <a href="{{ $product->path() }}"><img src="{{ $product->img() }}" alt="perfume"></a>
+                        <a href="{{ $product->path() }}"><div class="product-name">{{ $product->name }}</div></a>
                         <div class="product-price">{{ '£'.$product->price }}</div>
                     </div>
                 @endforeach

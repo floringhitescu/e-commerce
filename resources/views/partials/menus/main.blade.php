@@ -19,7 +19,8 @@
                     <a class="nav-link" href="{{ route('shop') }}">{{ __('Shop') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Cart') }}</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Cart') }} <span class="badge badge-pill badge-dark">3</span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('About') }}</a>

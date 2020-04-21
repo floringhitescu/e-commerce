@@ -11192,6 +11192,14 @@ header .top-nav ul a:hover {
   grid-gap: 30px;
 }
 
+.featured-section .products .product-name a {
+  text-decoration: none;
+}
+
+.featured-section .products .product-name a:hover {
+  text-decoration: none;
+}
+
 .blog-section {
   background: #F5f5f5;
   border-top: 1px solid #CDCDCD;

@@ -158,6 +158,14 @@ header {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: $gutter;
+
+        .product-name a{
+            text-decoration: none;
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
     }
 }
 

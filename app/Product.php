@@ -10,4 +10,19 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function price()
+    {
+        return '£'.$this->price;
+    }
+
+    public function path()
+    {
+        return 'shop/'. $this->slug;
+    }
+
+    public function img()
+    {
+        return 'storage/uploads/'. $this->img;
+    }
 }

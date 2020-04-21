@@ -17,6 +17,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shop', 'ShopController@index')->name('shop');
-Route::get('/search', 'ShopController@search')->name('search');
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
