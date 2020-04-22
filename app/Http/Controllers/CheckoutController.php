@@ -29,8 +29,13 @@ class CheckoutController extends Controller
             $products = $cart->items;
             $totalPrice = $cart->totalPrice;
             $totalQty = $cart->totalQty;
-
-            return view('checkout', compact('suggestedProducts', 'products', 'totalPrice', 'totalQty'));
+            $totalPriceWithShipping = $totalPrice +5;
+            return view('checkout', compact('suggestedProducts', 'products', 'totalPrice', 'totalQty', 'totalPriceWithShipping'));
         }
+    }
+
+    public function checkout(Request $request)
+    {
+        dd($request->all());
     }
 }

@@ -22,3 +22,4 @@ Route::get('/{category}/shop', 'CategoriesController@index')->name('category.sho
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::get('/add-to-cart/{product}', 'CartController@addToCart')->name('add.product');
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+Route::post('/checkout', 'CheckoutController@checkout')->name('checkout');
