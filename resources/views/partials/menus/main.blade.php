@@ -19,8 +19,12 @@
                     <a class="nav-link" href="{{ route('shop') }}">{{ __('Shop') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Cart') }} <span class="badge badge-pill badge-dark">3</span>
-                    </a>
+                    @if(Session::has('cart'))
+                        <a class="nav-link" href="{{ route('cart.index') }}">{{ __('Cart') }} @if(Session::has('cart')) <span class="badge badge-pill badge-dark">{{  Session::get('cart')->totalQty}}</span> @endif
+                        </a>
+                    @else
+
+                    @endif
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('About') }}</a>

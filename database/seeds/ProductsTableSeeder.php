@@ -15,15 +15,15 @@ class ProductsTableSeeder extends Seeder
     {
 
         $perfume = Category::create([
-            'name' => 'Perfume'
+            'name' => 'perfume'
         ]);
 
         $cologne = Category::create([
-            'name' => 'Eau de Cologne'
+            'name' => 'eau de Cologne'
         ]);
 
         $spray = Category::create([
-            'name' => 'Spray'
+            'name' => 'spray'
         ]);
 
         Product::create([

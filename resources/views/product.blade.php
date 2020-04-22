@@ -13,6 +13,7 @@
                         <li class="breadcrumb-item active" aria-current="page"> {{ $product->name }}</li>
                     </div>
                 </ol>
+                @include('partials.alert')
             </nav>
         </div>
     </div>
@@ -24,34 +25,23 @@
                     <img id="product-image" class="img-fluid rounded mx-auto d-block" src="{{ '../'.$product->img() }}" alt="">
                 </div>
             </div>
-            <div class="col-md-6 mt-4">
-                <div class="container">
+            <div class="col-md-5 mt-4">
+                <div class="container pr-5 ">
                     <h1>{{ $product->name }}</h1>
                     <h2>{{ $product->details }}</h2>
                     <h1>{{ $product->price() }}</h1>
-
-                    <p>{{ $product->description }}</p>
+                    <div class="text-justify">
+                        <p>{{ $product->description }}</p>
+                    </div>
                     <div class="">
-                        <a href="#" class="addToCart button">Add to Cart</a>
+                        <a href="{{ route('add.product', $product) }}" class="addToCart button">Add to Cart</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-5 py-3 ">
             <h1>Our suggestions...</h1>
-            <div class="row container">
-               @foreach($suggestedProducts as $suggestedProduct)
-                    <div class="col-md-4 align-content-center">
-                        <div class="card" style="width: 20rem;">
-                            <a href="{{ $suggestedProduct->path() }}"><img src="{{ '../'.$suggestedProduct->img() }}" class="card-img-top" alt="..."></a>
-                            <div class="card-body">
-                                <p class="card-text">{{ Str::limit($suggestedProduct->name, 20) }}</p>
-                                <p class="card-text">{{ $suggestedProduct->price() }}</p>
-                            </div>
-                        </div>
-                    </div>
-               @endforeach
-            </div>
+            @include('partials.suggestions')
         </div>
     </div>
 @endsection

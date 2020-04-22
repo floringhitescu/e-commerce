@@ -18,11 +18,11 @@ class Product extends Model
 
     public function path()
     {
-        return 'shop/'. $this->slug;
+        return '/shop/'. $this->slug;
     }
 
     public function img()
     {
-        return 'storage/uploads/'. $this->img;
+        return '/storage/uploads/'. $this->img;
     }
 }

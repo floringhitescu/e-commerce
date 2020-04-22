@@ -13,6 +13,7 @@
                         </div>
                     </ol>
                 </nav>
+                @include('partials.alert')
             </div>
 
             <div class="container mt-5 pt-4">
@@ -21,9 +22,15 @@
                         <h2 class="font-weight-bold mb-3">By Category</h2>
                         <div class="categories-list">
                             <ul>
-                                @foreach($categories as $category)
-                                    <li class="mb-3"><a href="">{{ $category->name }}</a></li>
-                                @endforeach
+                                @if(isset($categoryName))
+                                    @foreach($categories as $category)
+                                        <li class="mb-3  {{ ( strtoupper($categoryName) == strtoupper($category->name)) ? 'border-bottom logo text-right pr-5' : '' }}"><a href="{{ $category->path() }}">{{ ucfirst($category->name) }}</a></li>
+                                    @endforeach
+                                @else
+                                    @foreach($categories as $category)
+                                        <li class="mb-3"><a href="{{ $category->path() }}">{{ ucfirst($category->name) }}</a></li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -35,7 +42,7 @@
                                 <div class="products text-center">
                                     @foreach($products as $product)
                                         <div class="product">
-                                            <a href="{{ $product->path() }}"><img src="{{ $product->img() }}" alt="perfume"></a>
+                                            <a href="{{ route('shop.show', $product) }}"><img src="{{ $product->img() }}" alt="perfume"></a>
                                             <a href="{{ $product->path() }}"><div class="product-name">{{ $product->name }}</div></a>
                                             <div class="product-price">{{ '£'.$product->price }}</div>
                                         </div>
@@ -43,6 +50,11 @@
                                 </div><!-- end products-->
 
                             </div><!-- end container -->
+                           @if(isset($categoryName))
+                                <div class="d-flex justify-content-center my-5">
+                                    {{ $products->links() }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

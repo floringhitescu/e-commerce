@@ -9,6 +9,11 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->orderBy('created_at', 'desc');
+    }
+
+    public function path()
+    {
+        return '/shop/'.strtolower($this->name);
     }
 }
