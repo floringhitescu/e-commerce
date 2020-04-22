@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div>
-                    <img id="product-image" class="img-fluid rounded mx-auto d-block" src="{{ '../'.$product->img() }}" alt="">
+                    <img id="product-image" class="img-fluid rounded mx-auto d-block" src="{{ $product->img() }}" alt="">
                 </div>
             </div>
             <div class="col-md-5 mt-4">

@@ -30,7 +30,7 @@ class CartController extends Controller
             $totalPrice = $cart->totalPrice;
             $totalQty = $cart->totalQty;
 
-            return view('cart', compact('suggestedProducts', 'products', 'totalPrice', 'totalQty', 'cart'));
+            return view('cart', compact('suggestedProducts', 'products', 'totalPrice', 'totalQty'));
         }
     }
 

@@ -24,11 +24,11 @@
                             <ul>
                                 @if(isset($categoryName))
                                     @foreach($categories as $category)
-                                        <li class="mb-3  {{ ( strtoupper($categoryName) == strtoupper($category->name)) ? 'border-bottom logo text-right pr-5' : '' }}"><a href="{{ $category->path() }}">{{ ucfirst($category->name) }}</a></li>
+                                        <li class="mb-3  {{ ( strtoupper($categoryName) == strtoupper($category->name)) ? 'border-bottom logo text-right pr-5' : '' }}"><a href="{{ route('category.shop', $category->name) }}">{{ ucfirst($category->name) }}</a></li>
                                     @endforeach
                                 @else
                                     @foreach($categories as $category)
-                                        <li class="mb-3"><a href="{{ $category->path() }}">{{ ucfirst($category->name) }}</a></li>
+                                        <li class="mb-3"><a href="{{ route('category.shop', $category->name) }}">{{ ucfirst($category->name) }}</a></li>
                                     @endforeach
                                 @endif
                             </ul>
@@ -42,8 +42,8 @@
                                 <div class="products text-center">
                                     @foreach($products as $product)
                                         <div class="product">
-                                            <a href="{{ route('shop.show', $product) }}"><img src="{{ $product->img() }}" alt="perfume"></a>
-                                            <a href="{{ $product->path() }}"><div class="product-name">{{ $product->name }}</div></a>
+                                            <a href="{{ route('shop.show', $product->slug) }}"><img src="{{ $product->img() }}" alt="perfume"></a>
+                                            <a href="{{ route('shop.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
                                             <div class="product-price">{{ '£'.$product->price }}</div>
                                         </div>
                                     @endforeach

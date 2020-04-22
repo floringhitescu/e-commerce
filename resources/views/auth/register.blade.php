@@ -75,3 +75,9 @@
     </div>
 </div>
 @endsection
+@section('footerScript')
+    <script>
+        const footer = document.getElementById('footer');
+        footer.className = 'footerDown'
+    </script>
+@endsection

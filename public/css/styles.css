@@ -33,3 +33,11 @@
     box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
 }
+
+
+.footerDown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
