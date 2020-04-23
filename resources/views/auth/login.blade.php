@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center ">
         <div class="col-md-8 ">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="card shadow-lg py-5 my-5">
 
-                <div class="card-body">
+
+                <div class="card-body py-5">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -63,6 +63,14 @@
                                     </a>
                                 @endif
                             </div>
+                            @if (Route::has('register'))
+                                <div class="col-md-8 offset-md-4 mt-5">
+                                    <div class="d-flex">
+                                        <p>Don't have an account yet? </p> <a class="pl-2 text-primary" href="{{ route('register') }}">{{ __(' Sign Up') }}</a>
+
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </form>
                 </div>

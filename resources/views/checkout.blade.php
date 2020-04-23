@@ -64,11 +64,12 @@
                             </div>
                             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Shipping and Card Details</div>
                             <div class="p-4">
+
                                 <form action="{{ route('checkout') }}" method="post" id="checkout-form">
                                     @csrf
                                     {{-- Name--}}
                                     <div class="input-group mb-4 border rounded-pill p-2">
-                                        <input type="text" id="name" placeholder="Shipping Name" aria-describedby="button-addon3" class="form-control border-0" required minlength="3">
+                                        <input type="text" name="name" id="name" placeholder="Shipping Name" aria-describedby="button-addon3" class="form-control border-0" required minlength="3">
                                     </div>
                                     {{-- Address--}}
                                     <div class="input-group mb-4 border rounded-pill p-2">
@@ -96,18 +97,21 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="input-group mb-4 border rounded-pill p-2">
-                                                <input  type="text" id="card-cvv" placeholder="CVV" aria-describedby="button-addon3" class="form-control border-0" required maxlength="3" minlength="3">
+                                                <input  type="text" id="card-cvc" placeholder="CVC" aria-describedby="button-addon3" class="form-control border-0" required maxlength="3" minlength="3">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mr-n2 d-flex justify-content-between">
-                                        <a href="#" class="button">Cancel</a>
-                                        <button href="#" type="submit" class="button">Checkout</button>
+                                    <div class="mr-n2 mt-3 d-flex justify-content-between">
+                                        <a href="{{ route('shop') }}" class="button">Cancel</a>
+                                        <button type="submit" class="button bg-secondary text-white">Checkout</button>
                                     </div>
                                 </form>
+
+                                <div id="charge-error" class="text-danger {{ !Session::has('error') ? 'hidden' : '' }}">
+                                    {{Session::get('error')}}
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -118,7 +122,9 @@
         @endif
     </div>
 @endsection
-
-@section('content')
-
+@section('scripts')
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="{{ asset('js/checkout.js') }}"></script>
 @endsection
+
+

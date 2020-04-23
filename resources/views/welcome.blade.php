@@ -5,11 +5,9 @@
     <header class="mt-n5">
         <div class="hero container mt-5 pt-2">
             <div class="hero-copy pt-5">
-                <h1>Beauty Pro</h1>
-                <p>A practical example of using CSS Grid for a typical website layout.</p>
+                <p class="display-4"><span class="miniLogo">Beauty Pro</span> has all you need to make your life beautiful.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="button button-white">Button 1</a>
-                    <a href="#" class="button button-white">Button 2</a>
+                    <a href="{{ route('category.shop', strtolower($suggestion->name)) }}" class="button button-white">Order a new {{ $suggestion->name }}</a>
                 </div>
             </div> <!-- end hero-copy -->
 
@@ -42,7 +40,7 @@
             </div>
         </div><!-- end container -->
     </div><!-- end feature section -->
-    <div class="blog-section">
+    <div class="blog-section" id="about">
         <div class="container">
             <h1 class="text-center">Forum Blog</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut commodi dolorum eius expedita illo impedit ipsa maiores nam nisi nobis porro quae quis tempora, vero. Aperiam atque eius quis!</p>

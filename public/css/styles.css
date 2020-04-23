@@ -6,6 +6,12 @@
     -webkit-text-fill-color: transparent;
 }
 
+.miniLogo {
+    background: linear-gradient(to left, #30CFD0 50%, #330867 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .linking {
 
 }
@@ -41,3 +47,4 @@
     right: 0;
     bottom: 0;
 }
+

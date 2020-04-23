@@ -73,8 +73,12 @@
                                                     </div>
                                                 </th>
                                                 <td class="border-0 align-middle"><strong>{{ '£'.$product['price'] }}</strong></td>
-                                                <td class="border-0 align-middle"><strong>{{ $product['qty'] }}</strong></td>
-                                                <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                                                <td class="border-0 align-middle">
+                                                    <a href="{{ route('decrease', $product['item']) }}" class="cartAction"> - </a>
+                                                    <strong>{{ $product['qty'] }}</strong>
+                                                    <a href="{{ route('increase', $product['item']) }}" class="cartAction"> +</a>
+                                                </td>
+                                                <td class="border-0 align-middle"><a href="{{ route('remove', $product['item']) }}" class="text-dark"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         @empty
                                             <h1>Your cart seems to be empty</h1>
@@ -87,7 +91,7 @@
                                         <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                                         <ul class="list-unstyled mb-4">
                                             <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>{{ '£'.$totalPrice }}</strong></li>
-                                            <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
+                                            <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>£0</strong></li>
                                             <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                                                 <h5 class="font-weight-bold">{{ '£'.$totalPrice }}</h5>
                                             </li>

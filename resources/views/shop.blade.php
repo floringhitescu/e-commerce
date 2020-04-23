@@ -60,8 +60,14 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
 @endsection
+
+@if($products->count() < 2)
+    @section('footerScript')
+        <script>
+            const footer = document.getElementById('footer');
+            footer.style.marginTop = '30%'
+        </script>
+    @endsection
+@endif

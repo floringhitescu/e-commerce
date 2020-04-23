@@ -111,4 +111,47 @@ class CartController extends Controller
         $request->session('success')->flash('success', "Item added to cart");
         return redirect()->to($product->path());
     }
+
+    public function remove($product)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($product);
+
+        if (count($cart->items)>0){
+            Session::put('cart', $cart);
+        } else {
+            $cart->totalQty = 0;
+            $cart->totalPrice = 0;
+            Session::put('cart', $cart);
+        }
+
+        return redirect()->route('cart.index');
+    }
+
+    public function empty()
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        Session::forget('cart');
+        return redirect()->route('shop')->with('success', 'Cart successfully emptied');
+    }
+
+    public function decrease($product)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->decrease($product);
+        Session::put('cart', $cart);
+        return redirect()->route('cart.index');
+    }
+
+    public function increase($product)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->increase($product);
+        Session::put('cart', $cart);
+        return redirect()->route('cart.index');
+    }
 }
