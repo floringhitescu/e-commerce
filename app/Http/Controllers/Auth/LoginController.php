@@ -42,7 +42,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (auth()->user()->isAdmin()){
-            $this->redirectTo = 'admin/dashboard';
+            $this->redirectTo = 'admin/';
             return $this->redirectTo;
         } else{
             $this->redirectTo = route('home');

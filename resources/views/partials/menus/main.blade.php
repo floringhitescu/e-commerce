@@ -30,7 +30,6 @@
                     <a class="nav-link" href="#about">{{ __('About') }}</a>
                 </li>
                 <!-- Authentication Links -->
-
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -30,7 +30,16 @@ Route::get('cart/remove/{product}', 'CartController@remove')->name('remove');
 Route::get('empty/cart', 'CartController@empty')->name('empty');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function (){
-    Route::get('/dashboard', function (){
-       return view('admin.index');
-    })->name('admin.index');
+    Route::get('/', function (){
+        $orders = \App\Order::orderBy('created_at', 'desc')->take(10)->get();
+        $users = \App\User::orderBy('created_at', 'desc')->take(10)->get();
+       return view('admin.index', compact('orders', 'users'));
+    })->name('dashboard');
+
+    Route::resource('users', 'UsersController');
+    Route::resource('posts', 'PostsController');
+    Route::resource('orders', 'OrdersController');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('roles', 'RolesController');
+    Route::resource('products', 'ProductsController');
 });

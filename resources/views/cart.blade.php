@@ -68,7 +68,7 @@
                                                         <img src="../../img/pngwave.png" alt="" width="70" class="img-fluid rounded shadow-sm">
                                                         <div class="ml-3 d-inline-block align-middle">
                                                             <h5 class="mb-0"> <a href="{{ $product['item']->path() }}" class="text-dark d-inline-block align-middle"> {{ Str::limit($product['item']['name'], 40) }} </a></h5><span class="text-muted font-weight-normal font-italic d-block">Category:
-                                                                <a href="{{ $product['item']->category->path() }}">{{ $product['item']->category->name }}</a></span>
+                                                                <a href="{{ route('category.shop', $product['item']->category->name) }}">{{ $product['item']->category->name }}</a></span>
                                                         </div>
                                                     </div>
                                                 </th>
