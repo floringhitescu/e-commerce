@@ -29,7 +29,7 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'MOR Marshmallow Eau de Parfum',
             'category_id' => $perfume->id,
-            'slug' => 'mor-065-spray',
+            'slug' => 'mor_065_spray',
             'details' => '7.6 x 2.5 x 8.9 cm; 90.7 g',
             'price' => 40.00,
             'description' => 'Sugar dipped Rose Petals infused with Pink Musk and Cotton Candy casts a spell that will captivate admirers. Spray on a mist of Marshmallow and enjoy the sweet journey.',
@@ -39,7 +39,7 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'DELAROM Homme Eau Sport Eau de Parfum 50 ml',
             'category_id' => $perfume->id,
-            'slug' => 'homme-067-perfume',
+            'slug' => 'homme_067_perfume',
             'details' => '8.5 x 3.3 x 11.9 cm',
             'price' => 21.62,
             'description' => 'DELAROM PARIS - THE NATURAL SCIENCE OF BEAUTY With 40 years’ experience in the world of cosmetics and a particular passion for essential oils and plants, Delano founder Christine Benet, has created a professional product line that combines unique patented technology, scientific innovation, natural formulas, original textures and delicate fragrances. Relying on the use of new biotech molecules associated with the powers of essential oils, the Delano Laboratories develop specific and concentrated formulas targeting hydration and cellular protection, both of which are sources of youth! Delarom’s products are infused with organic botanicals, high quality essential oils and advanced patented biotechnology.',
@@ -49,7 +49,7 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'DIVAIN-059, Eau de Parfum for Women',
             'category_id' => $spray->id,
-            'slug' => 'divain-059-spray',
+            'slug' => 'divain_059_spray',
             'details' => '5.5 x 9 x 12.7 cm',
             'price' => 22.00,
             'description' => 'Eau de Toilette or Eau de Parfum? While Eau de Toilette contains 5-9% of perfume oil, Eau de Parfum usually contains 8-14%. Eau de Parfums therefore last longer and smell more intense.',
@@ -59,7 +59,7 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Paul Smith London Men Eau de Parfum',
             'category_id' => $perfume->id,
-            'slug' => 'london-076-perfume',
+            'slug' => 'london_076_perfume',
             'details' => '5.5 x 9 x 12.7 cm',
             'price' => 38.70,
             'description' => 'Paul Smith London Eau de Parfum for Men opens with Spices, Mandarin, and Violet leaves. Subtle notes of Jasmine, Lavender and Mint characterise the heart before the base reveals a Brandy accord. This is combined with Australian Sandalwood, Tonka Beans and Amber.',

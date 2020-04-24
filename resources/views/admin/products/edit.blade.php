@@ -10,7 +10,7 @@
         <div class="pb-4">
             <p><strong>Instructions on how to use the system</strong></p>
             <ul>
-                <li><span class="text-danger">ATTENTION!</span> Product's slug has to be unique</li>
+                <li><span class="text-danger">ATTENTION!</span> Product's slug has to be unique and used to access product's page therefore, you must not change it</li>
             </ul>
         </div>
 
@@ -22,12 +22,13 @@
                     </div>
                 </div>
                 <div class=" ">
-                    <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.update', $product) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                         {{-- product name--}}
                         <div class="p-3">
                             <div class="input-group  border rounded-pill @error('name') is-invalid @endif p-2">
-                                <input type="text" name="name" id="name" placeholder="Product name" aria-describedby="button-addon3" class="form-control border-0 @error('name') is-invalid @endif" required minlength="3" value="{{old('name')}}">
+                                <input type="text" name="name" id="name" placeholder="Product name" aria-describedby="button-addon3" class="form-control border-0 @error('name') is-invalid @endif" required minlength="3" value="{{old('name') ? old('name') : $product->name}}">
                             </div>
                             <small class="form-text pl-3 text-muted">Product name has to be longer than 5 characters and no longer than 150 characters</small>
 
@@ -36,22 +37,10 @@
                             @enderror
                         </div>
 
-                        {{-- product slug--}}
-                        <div class="p-3">
-                            <div class="input-group  border rounded-pill @error('slug') is-invalid @endif p-2">
-                                <input type="text" name="slug" id="slug" placeholder="Product slug" aria-describedby="button-addon3" class="form-control border-0 @error('slug') is-invalid @endif" value="{{old('slug')}}" required minlength="3">
-                            </div>
-                            <small class="form-text pl-3 text-muted">Product slug has to be unique, longer than 5 characters and no longer than 150 characters</small>
-
-                            @error('slug')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
                         {{-- product details--}}
                         <div class="p-3">
                             <div class="input-group border rounded-pill @error('details') is-invalid @endif p-2">
-                                <input type="text" name="details" id="details" placeholder="Product details" aria-describedby="button-addon3" class="form-control border-0 @error('details') is-invalid @endif" value="{{old('details')}}" required minlength="3">
+                                <input type="text" name="details" id="details" placeholder="Product details" aria-describedby="button-addon3" class="form-control border-0 @error('details') is-invalid @endif" value="{{old('details') ? old('details') : $product->details}}" required minlength="3">
                             </div>
                             <small class="form-text pl-3 text-muted">Product details has to be longer than 5 characters and no longer than 150 characters</small>
 
@@ -63,7 +52,7 @@
 
                         {{-- product description--}}
                         <div class="p-3">
-                            <textarea type="text" name="description" id="name" placeholder="Product description" rows="7" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required>{{old('description')}}</textarea>
+                            <textarea type="text" name="description" id="name" placeholder="Product description" rows="7" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required>{{old('description') ? old('description') : $product->description}}</textarea>
                             <small class="form-text pl-3 text-muted">Product description has to be longer than 150 characters and no longer than 1000 characters</small>
 
                             @error('description')
@@ -72,16 +61,13 @@
                         </div>
 
 
-
-
                         <div class="d-flex justify-content-between">
-
                             {{-- product category--}}
                             <div class="p-3">
                                     <select name="category_id" class="custom-select" required>
                                         <option value="">Open this select menu</option>
                                         @foreach($categories as $category )
-                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif> {{ $category->name  }} </option>
+                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id or $product->category_id == $category->id) selected @endif> {{ $category->name  }} </option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
@@ -94,7 +80,7 @@
 
                             {{-- product price--}}
                             <div class="p-3">
-                                <input type="text" name="price" class="form-control"  placeholder="Product price" value="{{old('price')}}" required>
+                                <input type="text" name="price" class="form-control"  placeholder="Product price" value="{{old('price') ? old('price') : $product->price}}" required>
                                 <small class="form-text pl-3 text-muted">Product price is required and should contain only numbers</small>
 
                                 @error('price')

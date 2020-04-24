@@ -50,7 +50,7 @@
                                             @csrf
                                             @method('delete')
                                             <a onclick=" event.preventDefault(); document.getElementById('{{ 'destroy'.$product->id }}').submit();" class="text-danger"><i class="fa fa-trash"></i></a>
-                                            <a href="{{ route('admin.products.edit', $product) }}"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('admin.products.edit', $product) }}"><i class="fas fa-edit"></i></a>
                                         </form>
                                     </div>
                                     <div>
