@@ -32,3 +32,10 @@ function createNewCategory() {
     }
 }
 
+function createNewRole() {
+    if(document.getElementById('name').value.length > 3){
+        document.getElementById('createNewRole').submit();
+    } else {
+        alert('Please enter a category name');
+    }
+}

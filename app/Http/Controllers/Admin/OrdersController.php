@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -14,7 +15,11 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::orderBy('created_at', 'desc')->get();
+        $cancelledOrders = Order::onlyTrashed()->orderBy('created_at', 'desc')->get();
+
+
+        return view('admin.orders.index', compact('orders', 'cancelledOrders'));
     }
 
     /**
@@ -75,11 +80,14 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Order $order
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect()->back()->with('success', 'Order successfully cancelled');
     }
 }

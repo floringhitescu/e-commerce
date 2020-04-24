@@ -7,6 +7,13 @@
             <h1 class="mt-4">Manage Product Categories</h1>
             <p class="mt-4" id="currentTime"></p>
         </div>
+        <div class="pb-4">
+            <p><strong>Instructions on how to use the system</strong></p>
+            <ul>
+                <li><span class="text-danger">ATTENTION!</span> the deletion of a category will have a cascade effect on the entire product catalog</li>
+                <li> To edit a category click on the role name, then edit it. The system automatically will save the changes.</li>
+            </ul>
+        </div>
 
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
@@ -62,7 +69,7 @@
 
                         @empty
                             <tr>
-                                <p>No users found</p>
+                                <p>No categories found</p>
                             </tr>
                         @endforelse
                         </tbody>

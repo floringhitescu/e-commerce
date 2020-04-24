@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_id');
             $table->text('items');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable()->default(null);
 
             $table->foreign('user_id')->references('id')->on('users');
         });
