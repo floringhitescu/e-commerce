@@ -79,7 +79,7 @@
                 <div class="table-responsive">
                     <table
                         class="table table-bordered"
-                        id="usersTable"
+                        id="ordersTable"
                         width="100%"
                         cellspacing="0">
                         <thead>

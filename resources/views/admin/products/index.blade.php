@@ -4,25 +4,24 @@
     <div class="container-fluid">
         @include('partials.alert')
         <div class="d-flex justify-content-between my-4">
-            <h1 class="mt-4">Manage Role Groups</h1>
+            <h1 class="mt-4">Manage product Groups</h1>
             <p class="mt-4" id="currentTime"></p>
         </div>
         <div class="pb-4">
             <p><strong>Instructions on how to use the system</strong></p>
             <ul>
-                <li><span class="text-danger">ATTENTION!</span> you are not allowed to delete groups that have users</li>
-                <li> To edit a role click on the role name, then edit it. The system automatically will save the changes.</li>
+                <li><span class="text-danger">ATTENTION!</span> Deleting products could affect the orders and therefore, your clients</li>
             </ul>
         </div>
 
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <div>
-                    <i class="fas fa-table mr-1"></i> Registered Roles
+                    <i class="fas fa-table mr-1"></i> Registered products
                 </div>
                 <div>
-                    <a type="button" class="text-primary" data-toggle="modal" data-target="#addRole">
-                       add new role
+                    <a type="button" class="text-primary" href="{{ route('admin.products.create') }}">
+                       add new product
                     </a>
                 </div>
             </div>
@@ -36,44 +35,44 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Users</th>
+                            <th>Category</th>
+                            <th>Price(£)</th>
+                            <th>Slug</th>
                             <th>Created</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($roles as $role)
+                        @forelse($products as $product)
                             <tr>
                                 <td class="d-flex justify-content-start">
                                     <div class="mr-2">
-                                        @if($role->users->count() > 0)
-                                            <a onclick="alert('You cannot delete this roles as there are ')" class="text-danger"><i class="fa fa-trash"></i></a>
-                                        @else
-                                            <form id="{{ 'destroy'.$role->id }}"  action="{{ route('admin.roles.destroy', $role) }}" method="POST" >
-                                                @csrf
-                                                @method('delete')
-                                                <a onclick=" event.preventDefault(); document.getElementById('{{ 'destroy'.$role->id }}').submit();" class="text-danger"><i class="fa fa-trash"></i></a>
-                                            </form>
-                                        @endif
+                                        <form id="{{ 'destroy'.$product->id }}"  action="{{ route('admin.products.destroy', $product) }}" method="POST" >
+                                            @csrf
+                                            @method('delete')
+                                            <a onclick=" event.preventDefault(); document.getElementById('{{ 'destroy'.$product->id }}').submit();" class="text-danger"><i class="fa fa-trash"></i></a>
+                                        </form>
                                     </div>
                                     <div>
-                                       <p id="{{ 'name'.$role->id }}" onclick="this.style.display = 'none'; document.getElementById('{{ 'update'.$role->id }}').style.display = 'block'; "> {{ ucfirst($role->name) }}</p>
+                                       <p id="{{ 'name'.$product->id }}" onclick="this.style.display = 'none'; document.getElementById('{{ 'update'.$product->id }}').style.display = 'block'; "> {{ ucfirst($product->name) }}</p>
 
-                                        <form id="{{ 'update'.$role->id }}"  action="{{ route('admin.roles.update', $role) }}" method="POST" style="display: none;">
+                                        <form id="{{ 'update'.$product->id }}"  action="{{ route('admin.products.update', $product) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('put')
-                                            <input class="rounded" type="text" name="name" value="{{ ucfirst($role->name) }}" onmouseout="document.getElementById('{{ 'update'.$role->id }}').style.display = 'none'; document.getElementById('{{ 'name'.$role->id }}').style.display = 'block';" onblur="event.preventDefault(); document.getElementById('{{ 'update'.$role->id }}').submit();">
+                                            <input class="rounded" type="text" name="name" value="{{ ucfirst($product->name) }}" onmouseout="document.getElementById('{{ 'update'.$product->id }}').style.display = 'none'; document.getElementById('{{ 'name'.$product->id }}').style.display = 'block';" onblur="event.preventDefault(); document.getElementById('{{ 'update'.$product->id }}').submit();">
                                         </form>
 
                                     </div>
 
                                 </td>
-                                <td>{{ $role->users->count() }}</td>
-                                <td>{{ $role->created_at->format('d-m-yy') }}</td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->slug }}</td>
+                                <td>{{ $product->created_at->format('d-m-yy') }}</td>
                             </tr>
 
                         @empty
                             <tr>
-                                <p>No roles found</p>
+                                <p>No products found</p>
                             </tr>
                         @endforelse
                         </tbody>
@@ -82,5 +81,4 @@
             </div>
         </div>
     </div>
-    @include('admin.partials.addRole')
 @endsection

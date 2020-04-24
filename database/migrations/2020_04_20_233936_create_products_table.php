@@ -22,9 +22,9 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 5, 2);
             $table->text('description');
             $table->string('img');
+            $table->timestamp('deleted_at')->nullable()->default(null);
 
             $table->timestamps();
-
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
