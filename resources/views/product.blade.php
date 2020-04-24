@@ -11,6 +11,7 @@
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="{{ route('shop') }}">Shop</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> {{ $product->name }}</li>
+                        @include('partials.search')
                     </div>
                 </ol>
                 @include('partials.alert')
@@ -39,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-5 py-3 ">
+        <div class="text-center mt-5 py-5 ">
             <h1>Our suggestions...</h1>
             @include('partials.suggestions')
         </div>

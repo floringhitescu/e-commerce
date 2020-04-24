@@ -9,7 +9,8 @@
                     <ol class="breadcrumb">
                         <div class="container d-flex py-2">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            @include('partials.search')
                         </div>
                     </ol>
                 </nav>
@@ -35,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <h1 class="border-bottom border-dark ">Laptops</h1>
+                        <h1 class="border-bottom border-dark ">Beauty Pro Catalog</h1>
                         <div class="featured-section">
                             <div class="container">
 

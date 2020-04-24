@@ -1,6 +1,6 @@
 <footer id="footer">
     <div class="footer-content container">
-        <div class="made-with">Made with <i class="fa fa-heart"></i> by Andre Madarang</div>
+        <div class="made-with">2020 &#9400;  by Florin Ciprian Ghitescu</div>
         <ul>
             <li>Follow Me:</li>
             <li><a href="#"><i class="fa fa-globe"></i></a></li>

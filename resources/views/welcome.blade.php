@@ -5,7 +5,9 @@
     <header class="mt-n5">
         <div class="hero container mt-5 pt-2">
             <div class="hero-copy pt-5">
+
                 <p class="display-4"><span class="miniLogo">Beauty Pro</span> has all you need to make your life beautiful.</p>
+
                 <div class="hero-buttons">
                     <a href="{{ route('category.shop', strtolower($suggestion->name)) }}" class="button button-white">Order a new {{ $suggestion->name }}</a>
                 </div>
@@ -36,7 +38,7 @@
                 @endforeach
             </div><!-- end products-->
             <div class="text-center button-container">
-                <a href="#" class="button">View more products</a>
+                <a href="{{ route('shop') }}" class="button">View more products</a>
             </div>
         </div><!-- end container -->
     </div><!-- end feature section -->

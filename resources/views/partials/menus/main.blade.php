@@ -15,6 +15,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
                     @if(Session::has('cart'))
                         <a class="nav-link" href="{{ route('cart.index') }}">{{ __('Cart') }} @if(Session::has('cart')) <span class="badge badge-pill badge-dark">{{  Session::get('cart')->totalQty}}</span> @endif
@@ -29,6 +30,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#about">{{ __('About') }}</a>
                 </li>
+
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

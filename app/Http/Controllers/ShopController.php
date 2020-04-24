@@ -21,4 +21,16 @@ class ShopController extends Controller
         $suggestedProducts = Product::where('category_id', $product->category_id)->inRandomOrder()->take(3)->get();
         return view('product', compact('product', 'suggestedProducts'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->search;
+
+        $products = Product::where('name', 'like', "%$query%")->get();
+        $categories = Category::where('name', 'like', "%$query%")->get();
+
+        $totalResults = $products->count()+$categories->count();
+
+        return view('search', compact('products', 'categories', 'totalResults'));
+    }
 }
