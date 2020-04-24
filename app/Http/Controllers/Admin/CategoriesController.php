@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->validate([
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|exists:categories',
         ]);
 
         $category->update($data);

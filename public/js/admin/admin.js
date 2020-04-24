@@ -31,3 +31,4 @@ function createNewCategory() {
         alert('Please enter a category name');
     }
 }
+
