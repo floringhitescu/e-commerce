@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Session;
 
 class CategoriesController extends Controller
 {
@@ -14,7 +17,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -35,7 +39,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::put('modalOn', 'modalOn');
+
+        $data = $request->validate([
+            'name' => 'required|unique:categories|max:25|min:3'
+        ]);
+
+        Category::create($data);
+
+        $request->session()->forget('modalOn');
+        return redirect()->route('admin.categories.index')->with('success', 'New category created successfully');
     }
 
     /**
@@ -63,23 +76,31 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Category $category
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        $category->update($data);
+
+        return redirect()->back()->with('success', 'Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back()->with('success', 'Selected category was deleted successfully');
     }
 }

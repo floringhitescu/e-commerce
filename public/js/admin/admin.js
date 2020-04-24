@@ -23,3 +23,11 @@
 
 
 document.getElementById('currentTime').textContent =  (new Date()).toString().split(' ').splice(1,3).join(' ');
+
+function createNewCategory() {
+    if(document.getElementById('name').value.length > 3){
+        document.getElementById('createNewCategory').submit();
+    } else {
+        alert('Please enter a category name');
+    }
+}
