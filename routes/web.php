@@ -32,5 +32,5 @@ Route::get('empty/cart', 'CartController@empty')->name('empty');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function (){
     Route::get('/dashboard', function (){
        return view('admin.index');
-    });
+    })->name('admin.index');
 });
