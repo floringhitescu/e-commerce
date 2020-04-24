@@ -50,17 +50,11 @@
                                             @csrf
                                             @method('delete')
                                             <a onclick=" event.preventDefault(); document.getElementById('{{ 'destroy'.$product->id }}').submit();" class="text-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('admin.products.edit', $product) }}"><i class="fa fa-trash"></i></a>
                                         </form>
                                     </div>
                                     <div>
-                                       <p id="{{ 'name'.$product->id }}" onclick="this.style.display = 'none'; document.getElementById('{{ 'update'.$product->id }}').style.display = 'block'; "> {{ ucfirst($product->name) }}</p>
-
-                                        <form id="{{ 'update'.$product->id }}"  action="{{ route('admin.products.update', $product) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('put')
-                                            <input class="rounded" type="text" name="name" value="{{ ucfirst($product->name) }}" onmouseout="document.getElementById('{{ 'update'.$product->id }}').style.display = 'none'; document.getElementById('{{ 'name'.$product->id }}').style.display = 'block';" onblur="event.preventDefault(); document.getElementById('{{ 'update'.$product->id }}').submit();">
-                                        </form>
-
+                                       <p>{{ ucfirst($product->name) }}</p>
                                     </div>
 
                                 </td>

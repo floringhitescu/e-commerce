@@ -41,43 +41,44 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $request->slug = str_replace(' ', '_', strtolower($request->slug));
+        $request->slug = preg_replace('/[^\w]/', '', $request->slug);
+
         $data = $request->validate([
-            'name'          =>  'required|min:25',
-            'description'   => 'required|min:150|max:1500',
-            'body'          => 'required|min:150|max:1500',
-            'image'         => 'image|sometimes|mimes:jpeg,bmp,png,jpg|max:2500',
+            'name'          => 'required|min:5|max:150',
+            'slug'          => 'required|min:5|max:150|unique:products',
+            'details'       => 'required|min:5|max:150',
+            'description'   => 'required|min:50|max:1000',
+            'category_id'   => 'required',
+            'price'         => 'required|numeric',
+            'image'         => 'required|image|sometimes|mimes:jpeg,bmp,png,jpg|max:2500',
         ]);
 
-        if ($request->has('image')) {
-            $imagePath = $request['image']->store('uploads', 'public');
-        } else {
-            $imagePath = 'uploads/banner.jpg';
-        }
-
-        if ($request->has('image')) {
-            $imagePath = $request['image']->store('uploads', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(2200, 1000);
-            $image->save();
-        } else {
-            $imagePath = 'uploads/banner.jpg';
+        $category = Category::where('id', $request->category_id)->first();
+        if ($category == null){
+            return redirect()->back()->with('error', 'wrong category selected');
         }
 
 
-        $post = auth()->user()->posts()->create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'body' => $data['body'],
-            'image' => $imagePath,
+
+        $imagePath = $request->image->store('uploads', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(450, 400);
+        $image->save();
+
+
+
+        $product = Product::create([
+            'name'          => $data['name'],
+            'slug'          => $data['slug'],
+            'details'       => $data['details'],
+            'description'   => $data['description'],
+            'price'         => $data['price'],
+            'category_id'   => $data['category_id'],
+            'image'         => $imagePath,
         ]);
 
-        if($post){
-            $request->session('success')->flash('success', "New post has been created successfully!");
-        }else{
-            $request->session('error')->flash('error', 'There was an error!');
-        }
-
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.products.index')->with('success', "New post has been created successfully!");
     }
 
     /**

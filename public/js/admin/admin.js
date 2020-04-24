@@ -71,6 +71,6 @@ function validateSizeWithFileTitle(file) {
             $(file).val(''); //for clearing with Jquery
         }
         var fileName = $('#image').val().split('\\').pop().toLowerCase();
-        $('#imageCustom').text(fileName);
+        $('#customFile').text(fileName);
     }
 }

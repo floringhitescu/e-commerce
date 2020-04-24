@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('details')->nullable();
             $table->decimal('price', 5, 2);
             $table->text('description');
-            $table->string('img');
+            $table->string('image');
             $table->timestamp('deleted_at')->nullable()->default(null);
 
             $table->timestamps();

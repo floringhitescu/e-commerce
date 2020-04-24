@@ -22,12 +22,12 @@
                     </div>
                 </div>
                 <div class=" ">
-                    <form action="{{ route('admin.products.store') }}" method="post">
+                    <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         {{-- product name--}}
                         <div class="p-3">
                             <div class="input-group  border rounded-pill @error('name') is-invalid @endif p-2">
-                                <input type="text" name="name" id="name" placeholder="Product name" aria-describedby="button-addon3" class="form-control border-0 @error('name') is-invalid @endif" required minlength="3">
+                                <input type="text" name="name" id="name" placeholder="Product name" aria-describedby="button-addon3" class="form-control border-0 @error('name') is-invalid @endif" required minlength="3" value="{{old('name')}}">
                             </div>
                             <small class="form-text pl-3 text-muted">Product name has to be longer than 5 characters and no longer than 150 characters</small>
 
@@ -39,7 +39,7 @@
                         {{-- product slug--}}
                         <div class="p-3">
                             <div class="input-group  border rounded-pill @error('slug') is-invalid @endif p-2">
-                                <input type="text" name="slug" id="slug" placeholder="Product slug" aria-describedby="button-addon3" class="form-control border-0 @error('slug') is-invalid @endif" required minlength="3">
+                                <input type="text" name="slug" id="slug" placeholder="Product slug" aria-describedby="button-addon3" class="form-control border-0 @error('slug') is-invalid @endif" value="{{old('slug')}}" required minlength="3">
                             </div>
                             <small class="form-text pl-3 text-muted">Product slug has to be unique, longer than 5 characters and no longer than 150 characters</small>
 
@@ -51,7 +51,7 @@
                         {{-- product details--}}
                         <div class="p-3">
                             <div class="input-group border rounded-pill @error('details') is-invalid @endif p-2">
-                                <input type="text" name="details" id="details" placeholder="Product details" aria-describedby="button-addon3" class="form-control border-0 @error('details') is-invalid @endif" required minlength="3">
+                                <input type="text" name="details" id="details" placeholder="Product details" aria-describedby="button-addon3" class="form-control border-0 @error('details') is-invalid @endif" value="{{old('details')}}" required minlength="3">
                             </div>
                             <small class="form-text pl-3 text-muted">Product details has to be longer than 5 characters and no longer than 150 characters</small>
 
@@ -63,7 +63,7 @@
 
                         {{-- product description--}}
                         <div class="p-3">
-                            <textarea type="text" name="description" id="name" placeholder="Product description" rows="7" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required></textarea>
+                            <textarea type="text" name="description" id="name" placeholder="Product description" rows="7" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required>{{old('description')}}</textarea>
                             <small class="form-text pl-3 text-muted">Product description has to be longer than 150 characters and no longer than 1000 characters</small>
 
                             @error('description')
@@ -81,20 +81,20 @@
                                     <select name="category_id" class="custom-select" required>
                                         <option value="">Open this select menu</option>
                                         @foreach($categories as $category )
-                                            <option value="{{ $category->id }}"> {{ $category->name  }} </option>
+                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif> {{ $category->name  }} </option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
                                 <small class="form-text pl-3 text-muted">Product description has to be longer than 150 characters and no longer than 1000 characters</small>
 
-                                @error('description')
+                                @error('category_id')
                                 <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             {{-- product price--}}
                             <div class="p-3">
-                                <input type="text" name="price" class="form-control"  placeholder="Product price" required>
+                                <input type="text" name="price" class="form-control"  placeholder="Product price" value="{{old('price')}}" required>
                                 <small class="form-text pl-3 text-muted">Product price is required and should contain only numbers</small>
 
                                 @error('price')
@@ -106,8 +106,8 @@
                         <div class="">
                             <div class="mt-3 px-3">
                                 <div class="custom-file">
-                                    <input onchange="validateSize(this)" type="file" id="image" name="image"  class="custom-file-input @error('image') is-invalid @enderror" value="{{ old('image') }}" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <input onchange="validateSizeWithFileTitle(this)"  type="file" id="image" name="image" class="custom-file-input @error('image') is-invalid @enderror"  id="customFile">
+                                    <label class="custom-file-label" for="customFile" id="customFile">Choose file</label>
                                 </div>
 
                                 @error('image')
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class=" mt-5 d-flex justify-content-end ">
-                            <button href="{{ route('admin.products.index') }}" class="btn btn-secondary mx-3">Cancel</button>
+                            <a href="{{ route('admin.products.index') }}" type="button" class="btn btn-secondary mx-3">Cancel</a>
                             <button type="submit" class="btn btn-success mr-3">Create</button>
                         </div>
                     </form>

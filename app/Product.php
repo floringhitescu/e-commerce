@@ -28,6 +28,6 @@ class Product extends Model
 
     public function img()
     {
-        return '/storage/uploads/'. $this->img;
+        return '/storage/'. $this->image;
     }
 }
