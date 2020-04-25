@@ -49,9 +49,9 @@
 
             <div class="blog-posts">
                 @forelse($posts as $post)
-                    <div class="blog-post">
-                        <a href="{{ route('post.show', $post) }}"><img src="{{ $post->image() }}" alt=""></a>
-                        <p >
+                    <div class="blog-post ">
+                        <a href="{{ route('post.show', $post) }}"><img class="img-fluid t" src="{{ $post->image() }}" alt=""></a>
+                        <p class="mt-3" >
                             <a href="{{ route('post.show', $post) }}" style="color: #1f6fb2"><h2 class="blog-title ">{{ Str::limit($post->title, 100) }}</h2></a>
                         </p>
                         <p>posted on: {{ $post->created_at->format('d M, yy') }} by {{ $post->user->name }} </p>
