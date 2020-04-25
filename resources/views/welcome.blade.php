@@ -44,37 +44,49 @@
     </div><!-- end feature section -->
     <div class="blog-section" id="about">
         <div class="container">
-            <h1 class="text-center">Forum Blog</h1>
+            <h1 class="text-center">Beauty articles</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut commodi dolorum eius expedita illo impedit ipsa maiores nam nisi nobis porro quae quis tempora, vero. Aperiam atque eius quis!</p>
 
             <div class="blog-posts">
-                <div class="blog-post">
-                    <a href="#"><img src="img/blog1.png" alt=""></a>
-                    <a href="#">
-                        <h2 class="blog-title">Blog Post Title</h2>
-                    </a>
-                    <div class="blog-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                @forelse($posts as $post)
+                    <div class="blog-post">
+                        <a href="{{ route('post.show', $post) }}"><img src="{{ $post->image() }}" alt=""></a>
+                        <p >
+                            <a href="{{ route('post.show', $post) }}" style="color: #1f6fb2"><h2 class="blog-title ">{{ Str::limit($post->title, 100) }}</h2></a>
+                        </p>
+                        <p>posted on: {{ $post->created_at->format('d M, yy') }} by {{ $post->user->name }} </p>
+
                     </div>
-                </div>
-                <div class="blog-post">
-                    <a href="#"><img src="img/blog2.png" alt=""></a>
-                    <a href="#">
-                        <h2 class="blog-title">Blog Post Title</h2>
-                    </a>
-                    <div class="blog-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                    @empty
+                    <div class="blog-post">
+                        <a href="{{ route('post.show', 1) }}"><img src="img/blog1.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title coming soon</h2>
+                        </a>
+                        <div class="blog-description">
+                            The place holder of a blog post description coming soon
+                        </div>
                     </div>
-                </div>
-                <div class="blog-post">
-                    <a href="#"><img src="img/blog3.png" alt=""></a>
-                    <a href="#">
-                        <h2 class="blog-title">Blog Post Title</h2>
-                    </a>
-                    <div class="blog-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, in.dipisicing elit. Autem,
+                    <div class="blog-post">
+                        <a href="#"><img src="img/blog2.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title coming soon</h2>
+                        </a>
+                        <div class="blog-description">
+                            The place holder of a blog post description coming soon
+                        </div>
                     </div>
-                </div>
+                    <div class="blog-post">
+                        <a href="#"><img src="img/blog3.png" alt=""></a>
+                        <a href="#">
+                            <h2 class="blog-title">Blog Post Title coming soon</h2>
+                        </a>
+                        <div class="blog-description">
+                            The place holder of a blog post description coming soon
+                        </div>
+                    </div>
+                @endforelse
+
             </div> <!-- end blog posts -->
         </div><!-- end container -->
     </div> <!-- end blog-section -->

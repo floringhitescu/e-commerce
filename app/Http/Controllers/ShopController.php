@@ -26,7 +26,12 @@ class ShopController extends Controller
     {
         $query = $request->search;
 
-        $products = Product::where('name', 'like', "%$query%")->get();
+        $products = Product::where('name', 'like', "%$query%")
+            ->orWhere('details', 'like', "%$query%")
+            ->orWhere('description', 'like', "%$query%")
+            ->paginate(10);
+
+
         $categories = Category::where('name', 'like', "%$query%")->get();
 
         $totalResults = $products->count()+$categories->count();

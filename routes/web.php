@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/blog/{post}', 'PostController@show')->name('post.show');
+Route::post('/blog/{post}/comment', 'PostController@comment')->middleware('auth')->name('comment.post');
 Route::get('/search', 'ShopController@search')->name('search');
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 Route::get('/{category}/shop', 'CategoriesController@index')->name('category.shop');

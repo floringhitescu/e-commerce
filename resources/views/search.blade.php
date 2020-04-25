@@ -59,6 +59,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="d-flex justify-content-center">
+                                {{ $products->links() }}
+                            </div>
                         @endif
                     </div>
 
@@ -78,12 +81,12 @@
                                     </thead>
                                     <tbody class="">
                                     @forelse( $categories  as $category)
-                                        <td class="border-0 align-middle">{{ ucfirst($category->name) }}</td>
+                                        <td class="border-0 align-middle"><a href="{{ route('category.shop', $category->name) }}">{{ ucfirst($category->name) }}</a></td>
                                         <td class="border-0 align-middle text-left">
                                             <ul class="pl-5 ml-5">
-                                              @foreach($category->products as $product)
+                                                @foreach($category->products as $product)
                                                     <li class="list-group-item-action py-1"><a class="text-primary" href="{{ $product->path() }}">{{ $product->name }}</a> </li>
-                                              @endforeach
+                                                @endforeach
                                             </ul>
                                         </td>
                                         </tr>
@@ -105,7 +108,11 @@
 @section('footerScript')
     <script>
         const footer = document.getElementById('footer');
-        footer.style.marginTop ={{ $totalResults > 2 ? '10%' : '30%' }}
+        @if($totalResults > 2)
+            footer.style.marginTop = '15%';
+        @else
+            footer.style.marginTop = '35%';
+        @endif
     </script>
 @endsection
 
