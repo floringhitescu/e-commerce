@@ -37,7 +37,12 @@
                     <div class="sb-sidenav-menu-heading">Main</div>
                     <a class="nav-link" href="{{ route('admin.dashboard') }}"><div class="sb-nav-link-icon">
                             <i class="fas fa-tachometer-alt"></i>
-                        </div>Dashboard</a>
+                        </div>Dashboard
+                    </a>
+                    <a class="nav-link" href="{{ route('home') }}"><div class="sb-nav-link-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>Web site
+                    </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
                     <a class="nav-link" href="{{ route('admin.users.index') }}"  >
                         <div class="sb-nav-link-icon">
