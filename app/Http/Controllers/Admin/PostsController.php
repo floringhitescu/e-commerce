@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
@@ -41,16 +42,16 @@ class PostsController extends Controller
 
 
         $data = $request->validate([
-            'title'          => 'required|unique:posts|max:250|min:100',
+            'title'          => 'required|max:250|min:100',
             'description'    => 'required|min:150|max:1000' ,
-            'body'           => 'required|unique:posts|min:250|max:6000',
+            'body'           => 'required|min:250|max:6000',
             'image'         => 'required|image|mimes:jpeg,bmp,png,jpg|max:2500',
         ]);
 
 
 
         $imagePath = $data['image']->store('uploads', 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, 600);
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, 400);
         $image->save();
 
         Post::create([
@@ -67,35 +68,65 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return void
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Post $post
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+
+
+        $data = $request->validate([
+            'title'          => 'required|max:250|min:100',
+            'description'    => 'required|min:150|max:1000' ,
+            'body'           => 'required||min:250|max:6000',
+            'image'          => 'sometimes|image|mimes:jpeg,bmp,png,jpg|max:2500',
+        ]);
+
+
+        $imagePath = $post->image;
+
+        if ($request->has('image')){
+            $imagePath = $request->image->store('uploads', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->resize(450, 400);
+            $image->save();
+
+            //delete stored image if post image is not the default img
+            if (Storage::exists( 'public/'. $post->image) and $imagePath != 'uploads/pngwave.png') {
+                Storage::delete('public/' .$post->image);
+            }
+        }
+
+        $post->update([
+            'title'         => $data['title'],
+            'description'   => $data['description'],
+            'body'          => $data['body'],
+            'image'         => $imagePath,
+        ]);
+
+        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
     }
 
     /**

@@ -18,7 +18,7 @@
             <div class="card-body  py-5">
                 <div>
                     <div class="text-center">
-                        <h3>Create new product</h3>
+                        <h3>Edit new product</h3>
                     </div>
                 </div>
                 <div class=" ">
