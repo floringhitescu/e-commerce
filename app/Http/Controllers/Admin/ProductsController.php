@@ -51,7 +51,7 @@ class ProductsController extends Controller
             'description'   => 'required|min:50|max:1000',
             'category_id'   => 'required',
             'price'         => 'required|numeric',
-            'image'         => 'required|image|sometimes|mimes:jpeg,bmp,png,jpg|max:2500',
+            'image'         => 'required|image|mimes:jpeg,bmp,png,jpg|max:2500',
         ]);
 
         $data['slug'] = str_replace(' ', '_', strtolower($data['slug']));

@@ -4,13 +4,13 @@
     <div class="container-fluid">
         @include('partials.alert')
         <div class="d-flex justify-content-between my-4">
-            <h1 class="mt-4">Manage product Groups</h1>
+            <h1 class="mt-4">Manage post </h1>
             <p class="mt-4" id="currentTime"></p>
         </div>
         <div class="pb-4">
             <p><strong>Instructions on how to use the system</strong></p>
             <ul>
-                <li><span class="text-danger">ATTENTION!</span> Product's slug has to be unique and used to access product's page therefore, you must not change it</li>
+                <li><span class="text-danger">ATTENTION!</span> Post deletion would trigger cascade deletion on comments</li>
             </ul>
         </div>
 
@@ -18,76 +18,46 @@
             <div class="card-body  py-5">
                 <div>
                     <div class="text-center">
-                        <h3>Create new product</h3>
+                        <h3>Create new post</h3>
                     </div>
                 </div>
                 <div class=" ">
-                    <form action="{{ route('admin.products.update', $product) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('put')
-                        {{-- product name--}}
+                        {{-- post title--}}
                         <div class="p-3">
-                            <div class="input-group  border rounded-pill @error('name') is-invalid @endif p-2">
-                                <input type="text" name="name" id="name" placeholder="Product name" aria-describedby="button-addon3" class="form-control border-0 @error('name') is-invalid @endif" required minlength="3" value="{{old('name') ? old('name') : $product->name}}">
+                            <div class="input-group  border rounded-pill @error('title') is-invalid @endif p-2">
+                                <input type="text" name="title" id="title" placeholder="Post title" aria-describedby="button-addon3" class="form-control border-0 @error('title') is-invalid @endif" required minlength="3" value="{{old('title')}}">
                             </div>
-                            <small class="form-text pl-3 text-muted">Product name has to be longer than 5 characters and no longer than 150 characters</small>
+                            <small class="form-text pl-3 text-muted">Post title has to be longer than 100 characters and no longer than 250 characters</small>
 
-                            @error('name')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        {{-- product details--}}
-                        <div class="p-3">
-                            <div class="input-group border rounded-pill @error('details') is-invalid @endif p-2">
-                                <input type="text" name="details" id="details" placeholder="Product details" aria-describedby="button-addon3" class="form-control border-0 @error('details') is-invalid @endif" value="{{old('details') ? old('details') : $product->details}}" required minlength="3">
-                            </div>
-                            <small class="form-text pl-3 text-muted">Product details has to be longer than 5 characters and no longer than 150 characters</small>
-
-                            @error('details')
+                            @error('title')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
 
 
-                        {{-- product description--}}
+                        {{-- post description--}}
                         <div class="p-3">
-                            <textarea type="text" name="description" id="name" placeholder="Product description" rows="7" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required>{{old('description') ? old('description') : $product->description}}</textarea>
-                            <small class="form-text pl-3 text-muted">Product description has to be longer than 150 characters and no longer than 1000 characters</small>
+                            <textarea type="text" name="description" id="name" placeholder="Post description" maxlength="1000" minlength="150" rows="4" aria-describedby="button-addon3" class="form-control  @error('description') is-invalid @endif" required>{{old('description')}}</textarea>
+                            <small class="form-text pl-3 text-muted">Post description has to be longer than 150 characters and no longer than 1000 characters</small>
 
                             @error('description')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
 
+                        {{-- post body--}}
+                        <div class="p-3">
+                            <textarea type="text" name="body" id="body" placeholder="Post body" rows="10"  maxlength="6000" minlength="1000" aria-describedby="button-addon3" class="form-control  @error('body') is-invalid @endif" required>{{old('body')}}</textarea>
+                            <small class="form-text pl-3 text-muted">Post description has to be longer than 1000 characters and no longer than 6000 characters</small>
 
-                        <div class="d-flex justify-content-between">
-                            {{-- product category--}}
-                            <div class="p-3">
-                                    <select name="category_id" class="custom-select" required>
-                                        <option value="">Open this select menu</option>
-                                        @foreach($categories as $category )
-                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id or $product->category_id == $category->id) selected @endif> {{ $category->name  }} </option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
-                                <small class="form-text pl-3 text-muted">Product description has to be longer than 150 characters and no longer than 1000 characters</small>
-
-                                @error('category_id')
-                                <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            {{-- product price--}}
-                            <div class="p-3">
-                                <input type="text" name="price" class="form-control"  placeholder="Product price" value="{{old('price') ? old('price') : $product->price}}" required>
-                                <small class="form-text pl-3 text-muted">Product price is required and should contain only numbers</small>
-
-                                @error('price')
-                                <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            @error('body')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
+
+
 
                         <div class="">
                             <div class="mt-3 px-3">
@@ -97,15 +67,13 @@
                                 </div>
 
                                 @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
 
                         <div class=" mt-5 d-flex justify-content-end ">
-                            <a href="{{ route('admin.products.index') }}" type="button" class="btn btn-secondary mx-3">Cancel</a>
+                            <a href="{{ route('admin.posts.index') }}" type="button" class="btn btn-secondary mx-3">Cancel</a>
                             <button type="submit" class="btn btn-success mr-3">Create</button>
                         </div>
                     </form>

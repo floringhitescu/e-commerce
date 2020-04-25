@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -14,7 +16,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +38,30 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $data = $request->validate([
+            'title'          => 'required|unique:posts|max:250|min:100',
+            'description'    => 'required|min:150|max:1000' ,
+            'body'           => 'required|unique:posts|min:250|max:6000',
+            'image'         => 'required|image|mimes:jpeg,bmp,png,jpg|max:2500',
+        ]);
+
+
+
+        $imagePath = $data['image']->store('uploads', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, 600);
+        $image->save();
+
+        Post::create([
+            'title'         => $data['title'],
+            'description'   => $data['description'],
+            'body'          => $data['body'],
+            'image'         => $imagePath,
+            'user_id'       => auth()->user()->id,
+        ]);
+
+        return redirect()->route('admin.posts.index')->with('success', 'Post created successfully');
     }
 
     /**
@@ -75,11 +101,13 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->back()->with('success', 'Post deleted successfully');
     }
 }
